@@ -58,6 +58,7 @@ This repo contains the solutions for the assessments proposed in the following c
 * Removing frequent terms (stop words)
 * Removing infrequent terms
 * Handling Unicode errors
+
 -----
 
 ### Week 3: Intermediate NLP and Basic Regular Expressions
