@@ -19,7 +19,7 @@ This repo contains the solutions for the assessments proposed in the following c
 
 -----
 
-### Before the Course - Resources
+### Before the Course
 
 * Make sure that [scikit-learn](http://scikit-learn.org/stable/install.html), [pandas](http://pandas.pydata.org/pandas-docs/stable/install.html), and [matplotlib](http://matplotlib.org/users/installing.html) (and their dependencies) are installed on your system. The easiest way to accomplish this is by downloading the [Anaconda distribution](https://www.continuum.io/downloads) of Python. Both Python 2 and 3 are welcome.
 * If you are not familiar with Git and GitHub, watch my [quick introduction to Git and GitHub](https://www.youtube.com/watch?v=zYG8B8q722g) (8 minutes). Note that the repository shown in the video is from a previous iteration of the course, and the GitHub interface has also changed slightly.
@@ -58,6 +58,7 @@ This repo contains the solutions for the assessments proposed in the following c
 * Removing frequent terms (stop words)
 * Removing infrequent terms
 * Handling Unicode errors
+
 -----
 
 ### Week 3: Intermediate NLP and Basic Regular Expressions
