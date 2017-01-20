@@ -30,7 +30,7 @@ class NLP:
 
         return fpr, tpr
 
-    def plot_roc_curve(self, data, plot_index, plot_label=None):
+    def plot_roc_curve(self, data, plot_index=1, plot_label=None):
         plt.figure(plot_index)
         plt.plot([0, 1], [0, 1], 'k--')
         for model in data:
@@ -56,6 +56,32 @@ class McDonalsAssessment(NLP):
 
         # Define our model data
         X = data.review
+        y = data.rude
+
+        # Split the data into training and testing data
+        (
+            self.X_train,
+            self.X_test,
+            self.y_train,
+            self.y_test
+        ) = train_test_split(X, y, random_state=1)
+
+        assert self.X_train.shape == self.y_train.shape
+        assert self.X_test.shape == self.y_test.shape
+
+    def task_7_init(self):
+        # Read the data and clean it
+        data = pd.read_csv('../data/mcdonalds.csv')
+        data = data.dropna(subset=['policies_violated'], how='all')
+
+        # Add a binary rude colum
+        data['rude'] = data.policies_violated.str.contains('RudeService').astype(int)
+
+        # Clean City column from NaN values
+        data.city = data.city.fillna("na")
+
+        # Define our model data - review contatenated with the city from the review
+        X = data.review.str.cat(data.city, sep=" ")
         y = data.rude
 
         # Split the data into training and testing data
