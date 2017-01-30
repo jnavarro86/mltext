@@ -36,3 +36,12 @@ mc.tokenizer_perfomance(vect3, "StopWords")
 # The AUC is 0.853234779844
 # The Accuracy is 0.785326086957
 # Number of Features: 7023
+
+print("################### STOPWORDS & MAX & MIN FRECUENCY ###############")
+vect9 = CountVectorizer(stop_words="english", min_df=4, max_df=0.3)
+mc.tokenizer_perfomance(vect9, "StopWords + MinFrecuency + MaxFrecuency")
+
+# ################### STOPWORDS & MAX & MIN FRECUENCY ###############
+# The AUC is 0.864854554125
+# The Accuracy is 0.807065217391
+# Number of Features: 1739
