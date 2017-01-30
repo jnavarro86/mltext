@@ -1,9 +1,14 @@
 import matplotlib.pyplot as plt
+import numpy
 import pandas as pd
 
 from sklearn.cross_validation import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import roc_auc_score, accuracy_score, roc_curve
+
+
+def calculate_mean(list):
+    return numpy.array(list).mean()
 
 
 class NLP:
@@ -94,6 +99,35 @@ class McDonalsAssessment(NLP):
 
         assert self.X_train.shape == self.y_train.shape
         assert self.X_test.shape == self.y_test.shape
+
+    def task_8_init(self):
+        # Read the data and clean it
+        data = pd.read_csv('../data/mcdonalds.csv')
+        data = data.dropna(subset=['policies_violated'], how='all')
+
+        # Add a binary rude colum
+        data['rude'] = data.policies_violated.str.contains('RudeService').astype(int)
+
+        # Clean City column from NaN values
+        data.city = data.city.fillna("na")
+
+        # Calculate the mean of policies violated confidence
+        data["confidence_list"] = data["policies_violated:confidence"].str.split("\n")
+        data["confidence_mean"] = (
+            data["confidence_list"].apply(lambda x: calculate_mean(x))
+        )
+
+        # Define our model data - review contatenated with the city from the review
+        X = data.review.str.cat(data.city, sep=" ")
+        y = data.rude
+
+        # Split the data into training and testing data
+        (
+            self.X_train,
+            self.X_test,
+            self.y_train,
+            self.y_test
+        ) = train_test_split(X, y, random_state=1)
 
     def tokenizer_perfomance(self, vect, plot_index, plot_label=None):
         """
